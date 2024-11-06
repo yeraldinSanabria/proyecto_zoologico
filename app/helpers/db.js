@@ -4,11 +4,11 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
 
-    host: 'localhost',
-    port: 3409,
-    user: 'root',
-    password: 'yeral.',
-    database: 'veterinaria'
+    host: 'store-ecommerce-do-user-8977041-0.g.db.ondigitalocean.com',
+    port: 25060,
+    user: 'animals_user',
+    password: 'AVNS_0qW6xeFofhO7esgkh_k',
+    database: 'animals'
 
 });
 

@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./helpers/config');
+const index_router = require('./routes/index.route');
+const types_route = require('./routes/types.route');
 
 const app = express();
 
@@ -17,10 +19,11 @@ app.use((req, res, next) => {
 });
 
 //RUTAS
-// require('./route/lkn_statusRoute')(app);
+app.use(index_router);
+app.use('/types',types_route);
 
 app.listen(config.port, ()=>{
-    console.log('server on por 3000')
+    console.log(`server on port ${config.port}`)
 })
 
 module.exports = app;
