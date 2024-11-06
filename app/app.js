@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const config = require('./helpers/config');
 const index_router = require('./routes/index.route');
 const types_route = require('./routes/types.route');
+const diet_route = require('./routes/diet.route');
+const habitats_route = require('./routes/habitats.route');
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use((req, res, next) => {
 //RUTAS
 app.use(index_router);
 app.use('/types',types_route);
+app.use('/diet',diet_route);
+app.use('/habitats',habitats_route);
 
 app.listen(config.port, ()=>{
     console.log(`server on port ${config.port}`)

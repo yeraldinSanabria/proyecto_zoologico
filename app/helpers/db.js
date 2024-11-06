@@ -1,24 +1,23 @@
-// en esta hoja definiremos la conexiones a la base de datos `
+const mysql = require('mysql2/promise');
 
-const mysql = require('mysql2');
+async function initializeConnection() {
+    const connection = await mysql.createConnection({
+        host: 'store-ecommerce-do-user-8977041-0.g.db.ondigitalocean.com',
+        port: 25060,
+        user: 'animals_user',
+        password: 'AVNS_0qW6xeFofhO7esgkh_k',
+        database: 'animals'
+    });
 
-const connection = mysql.createConnection({
-
-    host: 'store-ecommerce-do-user-8977041-0.g.db.ondigitalocean.com',
-    port: 25060,
-    user: 'animals_user',
-    password: 'AVNS_0qW6xeFofhO7esgkh_k',
-    database: 'animals'
-
-});
-
-connection.connect((error) => {
-    if (error) {
-        console.log('Error conectando con la base de datos', error);
-        return
-    } else {
-        console.log('Conectando a la base de datos')
+    try {
+        await connection.connect();
+        console.log('Conectado a la base de datos');
+    } catch (error) {
+        console.error('Error conectando con la base de datos', error);
     }
-});
 
-module.exports = connection;
+    return connection;
+}
+
+module.exports = initializeConnection;
+

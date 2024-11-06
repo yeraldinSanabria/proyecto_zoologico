@@ -8,10 +8,15 @@ class Generate {
     }
 
     // Método para READ
-    read(table, columns = ["*"], condition = null) {
+    read(table, columns = ["*"]) {
         const columnList = columns.join(', ');
-        const whereClause = condition ? ` WHERE ${condition}` : '';
-        return `SELECT ${columnList} FROM ${table}${whereClause};`;
+        return `SELECT ${columnList} FROM ${table}`;
+    }
+
+    // Método para READById
+    readById(table, columns = ["*"], id) {
+        const columnList = columns.join(', ');
+        return `SELECT ${columnList} FROM ${table} WHERE id = ${id};`;
     }
 
     // Método para UPDATE
@@ -40,16 +45,16 @@ const createDat = {
 
 const generator = new Generate();
 
-console.log(generator.create('mascotas', createDat));
+// console.log(generator.create('mascotas', createDat));
 // Salida: INSERT INTO mascotas (id, nombre, especie, raza, fecha_nacimiento, propietarioId) VALUES('6', 'tata', 'gata', 'criolla', '2024-05-07', '101');
 
-console.log(generator.read('mascotas', ["nombre", "especie"], 'id = 6'));
-// Salida: SELECT nombre, especie FROM mascotas WHERE id = 6;
+// console.log(generator.read('mascotas', ["nombre", "especie"]));
+// Salida: SELECT nombre, especie FROM mascotas;
 
-console.log(generator.update('mascotas', { nombre: 'Tom', especie: 'gato' }, 6));
+// console.log(generator.update('mascotas', { nombre: 'Tom', especie: 'gato' }, 6));
 // Salida: UPDATE mascotas SET nombre = 'Tom', especie = 'gato' WHERE id = 6;
 
-console.log(generator.delete('mascotas', 6));
+// console.log(generator.delete('mascotas', 6));
 // Salida: DELETE FROM mascotas WHERE id = 6;
 
 

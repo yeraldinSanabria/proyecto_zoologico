@@ -1,6 +1,6 @@
-const service = require('../services/types.service');
+const service = require('../services/habitats.service');
 
-async function create_type(req, res) {
+async function create_habitats(req, res) {
     try {
         let query = await service.create(req.body)
         req.body.id = query.insertId
@@ -13,7 +13,7 @@ async function create_type(req, res) {
 };
 
 
-async function read_type(req, res) {
+async function read_habitats(req, res) {
     try {
         let consult = await service.read();
         res.status(201).json(consult)
@@ -36,7 +36,7 @@ async function find_by_id(req, res) {
     }
 };
 
-async function update_type(req, res) {
+async function update_habitats(req, res) {
     try {
         let query = await service.update(req.body, req.params.id)
         res.status(201).json(query)
@@ -48,7 +48,7 @@ async function update_type(req, res) {
 };
 
 
-async function delete_type(req, res) {
+async function delete_habitats(req, res) {
     try {
         let query = await service.delete_item(req.params.id)
         res.status(201).json(query)
@@ -61,9 +61,9 @@ async function delete_type(req, res) {
 
 
 module.exports = {
-    create_type,
-    read_type,
+    create_habitats,
+    read_habitats,
     find_by_id,
-    update_type,
-    delete_type
+    update_habitats,
+    delete_habitats
 };
