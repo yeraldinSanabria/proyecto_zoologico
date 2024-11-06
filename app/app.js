@@ -5,6 +5,9 @@ const index_router = require('./routes/index.route');
 const types_route = require('./routes/types.route');
 const diet_route = require('./routes/diet.route');
 const habitats_route = require('./routes/habitats.route');
+const species_route = require('./routes/species.router');
+const animals_route = require('./routes/animals.route');
+
 
 const app = express();
 
@@ -25,6 +28,9 @@ app.use(index_router);
 app.use('/types',types_route);
 app.use('/diet',diet_route);
 app.use('/habitats',habitats_route);
+app.use('/species', species_route);
+app.use('/animals',animals_route );
+
 
 app.listen(config.port, ()=>{
     console.log(`server on port ${config.port}`)
