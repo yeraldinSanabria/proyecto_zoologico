@@ -1,13 +1,19 @@
 const initializeConnection = require("../helpers/db");
 
 const Generate = require('../helpers/generate');
-const columnTable = ['id', 'name','species_id']
+const columnTable = ['id', 'name', 'species_id']
 const generate = new Generate();
 
 async function read() {
     try {
         const connection = await initializeConnection();
-        let query = generate.read('animals', columnTable);
+        let query = `SELECT 
+                        a.id,
+                        a.name, 
+                        a.species_id,
+                        s.name AS specie
+                        FROM animals a 
+                        INNER JOIN species s ON a.species_id = s.id;`;
         const [rows] = await connection.query(query);
         return rows
     } catch (error) {
