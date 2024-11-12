@@ -25,6 +25,7 @@ async function read() {
             INNER JOIN habitats h ON s.habitats_id = h.id 
             INNER JOIN diet d ON s.diet_id = d.id`;
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -36,6 +37,7 @@ async function create(body) {
         const connection = await initializeConnection();
         let query = generate.create('species', body);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -47,6 +49,7 @@ async function update(data, id) {
         const connection = await initializeConnection();
         let query = generate.update('species', data, id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -58,6 +61,7 @@ async function delete_item(id) {
         const connection = await initializeConnection();
         let query = generate.delete('species', id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -70,6 +74,7 @@ async function readById(id) {
         const connection = await initializeConnection();
         let query = generate.readById('species', columnTable, id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows[0]
     } catch (error) {
         return error

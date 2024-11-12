@@ -9,6 +9,7 @@ async function read() {
         const connection = await initializeConnection();
         let query = generate.read('types', columnTable);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -20,6 +21,7 @@ async function create(body) {
         const connection = await initializeConnection();
         let query = generate.create('types', body);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -31,6 +33,7 @@ async function update(data, id) {
         const connection = await initializeConnection();
         let query = generate.update('types', data, id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -42,6 +45,7 @@ async function delete_item(id) {
         const connection = await initializeConnection();
         let query = generate.delete('types', id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows
     } catch (error) {
         return error
@@ -54,6 +58,7 @@ async function readById(id) {
         const connection = await initializeConnection();
         let query = generate.readById('types', columnTable, id);
         const [rows] = await connection.query(query);
+        connection.end();
         return rows[0]
     } catch (error) {
         return error
